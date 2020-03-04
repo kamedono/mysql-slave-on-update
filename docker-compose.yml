@@ -1,0 +1,30 @@
+﻿version: '3.7'
+services:
+  master:
+    image: mysql:latest
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    networks:
+     db-net:
+       ipv4_address: 172.18.0.11
+    volumes:
+        - ./config/master.cnf:/etc/mysql/conf.d/my.cnf
+ 
+  slave:
+    image: mysql:latest
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    networks:
+      db-net:
+        ipv4_address: 172.18.0.12
+    volumes:
+        - ./config/slave.cnf:/etc/mysql/conf.d/my.cnf
+ 
+ 
+networks:
+    db-net:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.18.0.0/24  
