@@ -1,6 +1,5 @@
-﻿[mysqld]
+[mysqld]
 character-set-server=utf8mb4
-log-bin=/var/log/mysql/bin-log
 server-id=1001
 
 [client]

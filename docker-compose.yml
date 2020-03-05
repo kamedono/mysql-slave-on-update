@@ -1,4 +1,4 @@
-﻿version: '3.7'
+version: '3.7'
 services:
   master:
     image: mysql:latest
@@ -9,6 +9,7 @@ services:
        ipv4_address: 172.18.0.11
     volumes:
         - ./config/master.cnf:/etc/mysql/conf.d/my.cnf
+        - ./initdb:/docker-entrypoint-initdb.d/
  
   slave:
     image: mysql:latest
@@ -19,6 +20,7 @@ services:
         ipv4_address: 172.18.0.12
     volumes:
         - ./config/slave.cnf:/etc/mysql/conf.d/my.cnf
+        - ./initdb:/docker-entrypoint-initdb.d/
  
  
 networks:
